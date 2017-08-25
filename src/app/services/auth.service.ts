@@ -17,6 +17,10 @@ export class AuthService {
   {
   	this.user = afAuth.authState;
   }
+  
+  authUser(){
+  	return this.user;
+  }
 
   get currentUserId(): string{
   	return this.authState !==null ? this.authState.uid : '';
@@ -28,7 +32,12 @@ export class AuthService {
   		const status = 'online';
   		this.setUserStatus(status);
   		this.router.navigate(['chat']);
-  	})
+  	});
+  }
+
+  logout(){
+  	this.afAuth.auth.signOut();
+  	this.router.navigate(['login']);
   }
 
   signUp(email: string, password: string, displayName: string){
