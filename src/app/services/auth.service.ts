@@ -28,7 +28,9 @@ export class AuthService {
 
   login(email: string, password: string){
   	return this.afAuth.auth.signInWithEmailAndPassword(email, password)
-  	.then((resolve) => {
+  	.then((user) => {
+  		  		this.authState = user;
+
   		const status = 'online';
   		this.setUserStatus(status);
   		this.router.navigate(['chat']);
@@ -36,7 +38,10 @@ export class AuthService {
   }
 
   logout(){
+  
   	this.afAuth.auth.signOut();
+  		const status = 'offline';
+  	this.setUserStatus(status);
   	this.router.navigate(['login']);
   }
 
@@ -72,5 +77,6 @@ export class AuthService {
 
   	
   }
+
 
 }
