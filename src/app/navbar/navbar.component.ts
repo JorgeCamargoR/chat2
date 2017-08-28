@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs/Observable';
+import { ChatService } from '../services/chat.service';
+
 import * as firebase from 'firebase/app';
 
 @Component({
@@ -13,7 +15,10 @@ export class NavbarComponent implements OnInit {
   user: Observable<firebase.User>;
   userEmail: string;
 
-  constructor(private authService: AuthService) { }
+    totalMensajes = this.chat.totalMensajes();
+
+
+  constructor(private authService: AuthService,private chat: ChatService) { }
 
   ngOnInit() {
 

@@ -66,6 +66,11 @@ export class ChatService {
   		});
   	}
 
+    totalMensajes(){
+      //query to create our message feed binding
+      return this.db.list('messages');
+    }
+
   	getTimeStamp(){
   		const now = new Date();
   		const date = now.getUTCFullYear() + '/' +
